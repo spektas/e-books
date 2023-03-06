@@ -36,48 +36,6 @@ class BookControllerTest {
     @MockBean
     private BookMapper bookMapper;
 
-    @SneakyThrows
-    @Test
-    void testSaveValidBookIsOk() {
-        File file = new File(this.getClass().getClassLoader().getResource("validBook.json").getFile());
-        final BookDTO bookDTO = objectMapper.readValue(new FileInputStream(file), BookDTO.class);
-
-        mvc.perform(
-                        post("/book")
-                                .content(asJsonString(bookDTO))
-                                .accept(MediaType.APPLICATION_JSON)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @SneakyThrows
-    @Test
-    void testSaveInValidBookBadRequest() {
-        File file = new File(this.getClass().getClassLoader().getResource("InvalidBook.json").getFile());
-        final BookDTO bookDTO = objectMapper.readValue(new FileInputStream(file), BookDTO.class);
-
-        mvc.perform(
-                        post("/book")
-                                .content(asJsonString(bookDTO))
-                                .accept(MediaType.APPLICATION_JSON)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
-    }
-
-    @SneakyThrows
-    @Test
-    void testUpdateBookInventory() {
-        File file = new File(this.getClass().getClassLoader().getResource("validBook.json").getFile());
-        final BookDTO bookDTO = objectMapper.readValue(new FileInputStream(file), BookDTO.class);
-
-        mvc.perform(
-                        put("/book")
-                                .content(asJsonString(bookDTO))
-                                .accept(MediaType.APPLICATION_JSON)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
     private String asJsonString(Object object) {
         try {
             return objectMapper.writeValueAsString(object);

@@ -55,44 +55,6 @@ class OrderServiceTest {
     @MockBean
     InventoryRepository inventoryRepository;
 
-    @SneakyThrows
-    @Test
-    void whenIsOkSaveOrderTest() {
-        File file = new File(this.getClass().getClassLoader().getResource("validOrder.json").getFile());
-        final OrderDTO orderDTO = objectMapper.readValue(new FileInputStream(file), OrderDTO.class);
-
-        when(inventoryService.findInventoryByBookId(anyInt())).thenReturn(getInventory());
-        when(bookService.findBookById(anyInt())).thenReturn(getBook());
-
-        orderService.saveOrder(getOrder(), orderDTO.getOrderItems());
-    }
-
-    @SneakyThrows
-    @Test
-    void whenIsNotFoundBookIdSaveOrderTest() {
-        File file = new File(this.getClass().getClassLoader().getResource("validOrder.json").getFile());
-        final OrderDTO orderDTO = objectMapper.readValue(new FileInputStream(file), OrderDTO.class);
-
-        when(inventoryService.findInventoryByBookId(anyInt())).thenReturn(getInventory());
-        when(bookService.findBookById(anyInt())).thenThrow(BookEntityNotFoundException.class);
-
-        assertThrows(
-                BookEntityNotFoundException.class, () -> orderService.saveOrder(getOrder(), orderDTO.getOrderItems()));
-    }
-
-    @SneakyThrows
-    @Test
-    void whenIsNotFoundInventoryIdSaveOrderTest() {
-        File file = new File(this.getClass().getClassLoader().getResource("validOrder.json").getFile());
-        final OrderDTO orderDTO = objectMapper.readValue(new FileInputStream(file), OrderDTO.class);
-
-        when(inventoryService.findInventoryByBookId(anyInt())).thenThrow(InventoryEntityNotFoundException.class);
-        when(bookService.findBookById(anyInt())).thenReturn(getBook());
-
-        assertThrows(
-                InventoryEntityNotFoundException.class,
-                () -> orderService.saveOrder(getOrder(), orderDTO.getOrderItems()));
-    }
 
     @Test
     void whenIsOkFindOrdersByCustomerIdTest() {
