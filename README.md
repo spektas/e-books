@@ -29,8 +29,8 @@ vision operations.
 http://localhost/swagger-ui/
 
 
-Dockerda run olduktan sonra ilk kullanıcının oluşması için /users/createdumpusers methodunun execute edilmesi gerekiyor.
-sonrasında  "username":"sema" ve "password":"12345" ile /users/authenticate methodu execute edilip token alınır.
+Dockerda run olduktan sonra ilk kullanıcı oluşturuluyor.
+"username":"sema" ve "password":"12345" ile /users/authenticate methodu execute edilip token alınır.
 
 
 -------------------------------------
