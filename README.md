@@ -33,10 +33,6 @@ Dockerda run olduktan sonra ilk kullanıcının oluşması için /users/createdu
 sonrasında  "username":"sema" ve "password":"12345" ile /users/authenticate methodu execute edilip token alınır.
 
 
-
-New user için
-/sql/v1/initial_user_create.sql in çalıştırılması gerekiyor.
-
 -------------------------------------
 
 #### **Stock Consistency**
