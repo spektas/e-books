@@ -14,7 +14,7 @@ vision operations.
 
 -Spring-Boot-Application
 
--PostgreSQL
+-H2 Database
 
 -Maven
 
@@ -27,15 +27,17 @@ vision operations.
 #### **Swagger**
 
 http://localhost/swagger-ui/
-"username":"sema",
-"password":"12345"
+
+
+Dockerda run olduktan sonra ilk kullanıcının oluşması için /users/createdumpusers methodunun execute edilmesi gerekiyor.
+sonrasında  "username":"sema" ve "password":"12345" ile /users/authenticate methodu execute edilip token alınır.
+
+
 
 -------------------------------------
 
-#### **PostgreSQL**
-"host":"localhost",
-"port":"5434",
-"username":"postgres",
-"password":"asd"
+#### **Stock Consistency**
+
+Aynı anda birden fazla ürün satın alırken oluşabilecek hata version kullanılarak **Optimistic locking** ile çözülmüştür.
 
 -------------------------------------

@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Table(name = "books")
 public class Book extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
@@ -35,8 +35,7 @@ public class Book extends BaseEntity {
             if (this.inventory != null) {
                 this.inventory.setBook(null);
             }
-        }
-        else {
+        } else {
             inventory.setBook(this);
         }
         this.inventory = inventory;

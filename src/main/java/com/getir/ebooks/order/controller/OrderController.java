@@ -4,6 +4,7 @@ import com.getir.ebooks.order.entity.Order;
 import com.getir.ebooks.order.mapper.OrderMapper;
 import com.getir.ebooks.order.model.OrderDTO;
 import com.getir.ebooks.order.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,28 +16,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("orders")
 public class OrderController {
     private final OrderService orderService;
     private final OrderMapper orderMapper;
 
-    public OrderController(OrderService orderService, OrderMapper orderMapper) {
-        this.orderService = orderService;
-        this.orderMapper = orderMapper;
-    }
-
-    @PostMapping("order")
+    @PostMapping
     public ResponseEntity<OrderDTO> saveOrder(@RequestBody @Valid OrderDTO orderDto) {
         final Order order = orderService.saveOrder(orderMapper.fromOrderDtoToOrderEntity(orderDto), orderDto.getOrderItems());
         return new ResponseEntity(orderMapper.fromOrderEntityToOrderDTO(order), HttpStatus.CREATED);
     }
 
-    @GetMapping("order/{orderId}")
+    @GetMapping("/{orderId}")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer orderId) {
         Order order = orderService.findOrderById(orderId);
         return new ResponseEntity(orderMapper.fromOrderEntityToOrderDTO(order), HttpStatus.OK);
     }
 
-    @GetMapping("orders")
+    @GetMapping
     public ResponseEntity<List<Order>> getOrderListByDateInterval(
             @RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date fromDate,
             @RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date toDate) {

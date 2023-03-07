@@ -1,6 +1,7 @@
 package com.getir.ebooks.security.jwt;
 
 import com.getir.ebooks.security.service.JpaUserDetailsService;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,12 +1,16 @@
 package com.getir.ebooks.book.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class BookDTO {
     private Integer id;
     @NotEmpty(message = "author cannot be empty")
@@ -17,7 +21,9 @@ public class BookDTO {
     @NotNull(message = "inventory cannot be null")
     private InventoryDTO inventory;
 
-    @Data
+    @Getter
+    @Setter
+    @NoArgsConstructor
     public static class InventoryDTO {
         private int quantity;
     }

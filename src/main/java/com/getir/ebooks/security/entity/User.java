@@ -12,11 +12,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name="user_login")
+@Table(name="users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String username;

@@ -13,12 +13,12 @@ import javax.persistence.*;
 public class Authority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
-    @JoinColumn(name = "user_login")
+    @JoinColumn(name = "users")
     @ManyToOne
     private User user;
 

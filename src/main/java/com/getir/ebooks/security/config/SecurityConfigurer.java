@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -32,7 +33,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers(
-                        "/user/authenticate",
+                        "/users/authenticate",
+                        "/users/createdumpusers",
                         "/customer/register",
                         "/v2/api-docs",
                         "/configuration/ui",
@@ -46,6 +48,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        security.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        security.addFilterBefore(jwtRequestFilter,UsernamePasswordAuthenticationFilter.class);
     }
 }
