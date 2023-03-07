@@ -12,6 +12,7 @@ import com.getir.ebooks.order.model.OrderDTO;
 import com.getir.ebooks.order.repository.OrderRepository;
 import com.getir.ebooks.order.service.OrderService;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findOrdersByCustomerId(Integer customerId, AppPage appPage) {
         return orderRepository.findByCustomer_Id(
-                customerId, PageRequest.of(appPage.getPageNo(), appPage.getPageSize()));
+                customerId, PageRequest.of(appPage.getPageNo(), appPage.getPageSize(), Sort.by("createdAt").descending()));
     }
 
     @Override

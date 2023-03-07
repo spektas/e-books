@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.File;
@@ -64,7 +65,7 @@ class OrderServiceTest {
 
         Order expectedOrder = getExpectedOrder();
 
-        when(orderRepository.findByCustomer_Id(2, PageRequest.of(appPage.getPageNo(), appPage.getPageSize())))
+        when(orderRepository.findByCustomer_Id(2, PageRequest.of(appPage.getPageNo(), appPage.getPageSize(), Sort.by("createdAt").descending())))
                 .thenReturn(Arrays.asList(expectedOrder));
         final List<Order> orders = orderService.findOrdersByCustomerId(2, appPage);
 
@@ -77,7 +78,7 @@ class OrderServiceTest {
         appPage.setPageNo(1);
         appPage.setPageSize(10);
 
-        when(orderRepository.findByCustomer_Id(2, PageRequest.of(appPage.getPageNo(), appPage.getPageSize())))
+        when(orderRepository.findByCustomer_Id(2, PageRequest.of(appPage.getPageNo(), appPage.getPageSize(), Sort.by("createdAt").descending())))
                 .thenThrow(OrderEntityNotFoundException.class);
 
         assertThrows(
