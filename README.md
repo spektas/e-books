@@ -34,6 +34,9 @@ sonrasında  "username":"sema" ve "password":"12345" ile /users/authenticate met
 
 
 
+New user için
+/sql/v1/initial_user_create.sql in çalıştırılması gerekiyor.
+
 -------------------------------------
 
 #### **Stock Consistency**
