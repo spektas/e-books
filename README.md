@@ -30,6 +30,9 @@ http://localhost/swagger-ui/
 "username":"sema",
 "password":"12345"
 
+New user için
+/sql/v1/initial_user_create.sql in çalıştırılması gerekiyor.
+
 -------------------------------------
 
 #### **PostgreSQL**
